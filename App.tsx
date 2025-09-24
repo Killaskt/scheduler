@@ -1,12 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { SafeAreaView, StyleSheet } from 'react-native';
+import { SafeAreaView, StyleSheet, View } from 'react-native';
 import { TaskScreen } from './src/features/tasks/TaskScreen';
+import QuickInputBar from './src/components/QuickInputBar';
 
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
-      <TaskScreen />
+      <View style={styles.content}>
+        <TaskScreen />
+      </View>
+      <QuickInputBar />
       <StatusBar style="auto" />
     </SafeAreaView>
   );
@@ -16,5 +20,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+  },
+  content: {
+    flex: 1,
   },
 });

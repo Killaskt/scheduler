@@ -1,10 +1,11 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { useAppStore } from '../store';
+import { useAppStore } from '@/store';
+import { Task } from '@/types';
 
 export const CalendarScreen = () => {
   const { selectedDate, tasks } = useAppStore();
-  const tasksForSelectedDate = tasks.filter(task => 
+  const tasksForSelectedDate = tasks.filter((task: Task) => 
     task.scheduledAt && new Date(task.scheduledAt).toDateString() === selectedDate.toDateString()
   );
 
@@ -13,7 +14,7 @@ export const CalendarScreen = () => {
       <Text style={styles.header}>Calendar</Text>
       <Text style={styles.dateHeader}>{selectedDate.toDateString()}</Text>
       {tasksForSelectedDate.length > 0 ? (
-        tasksForSelectedDate.map(task => (
+        tasksForSelectedDate.map((task: Task) => (
           <View key={task.id} style={styles.taskItem}>
             <Text style={styles.taskTitle}>{task.title}</Text>
             {task.description && <Text style={styles.taskDescription}>{task.description}</Text>}

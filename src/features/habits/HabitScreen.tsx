@@ -1,12 +1,13 @@
 import React from 'react';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { useAppStore } from '@/store';
+import { Task } from '@/types';
 
 export const HabitScreen = () => {
   const { tasks, toggleTaskComplete } = useAppStore();
-  const habits = tasks.filter(task => task.isHabit);
+  const habits = tasks.filter((task: Task) => task.isHabit);
 
-  const renderItem = ({ item }: { item: any }) => (
+  const renderItem = ({ item }: { item: Task }) => (
     <TouchableOpacity onPress={() => toggleTaskComplete(item.id)}>
       <View style={[styles.habitItem, item.completedAt && styles.completedHabit]}>
         <Text style={[styles.habitTitle, item.completedAt && styles.completedText]}>
